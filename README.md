@@ -3,7 +3,7 @@ The code that accompanies our paper: "A partially nested cortical hierarchy of n
 https://doi.org/10.1101/2021.02.05.429165 
 
 This code is partly written in Matlab and partly in Python.
-The folder *main analyses* contains the scripts that can reproduce all results reported in the manuscript. 
+The folder *Main analyses* contains the scripts that can reproduce all results reported in the manuscript. 
 All supporting functions are in the *Helper files* folder. 
 
 External toolboxes that are used are:
