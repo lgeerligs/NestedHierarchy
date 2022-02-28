@@ -10,3 +10,5 @@ External toolboxes that are used are:
 * The Brain Connectivity Toolbox (version 2015_01_25)
 * SPM12
 * The Donders Machine Learning Toolbox 
+
+This project uses data from the Cambridge Centre for Ageing Neuroscience, data access can be requested here: https://camcan-archive.mrc-cbu.cam.ac.uk/dataaccess/
