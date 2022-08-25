@@ -124,25 +124,19 @@ axis([0 6 0.5 0.6])
 hold on; er=errorbar(1:5, mean(rel19), (std(rel19)/sqrt(length(inregions))));
 er.Color=[0 0 0];
 er.LineStyle='none';
-saveas(gcf,[resdir 'compare_methods_overlap_folds_v2.pdf'])
+saveas(gcf,[resdir 'compare_methods_overlap_folds_rel19.pdf'])
 
 
-figure; H=notBoxPlot(rel, 'markMedian',true);
-set([H.data],...
-    'MarkerFaceColor',[1,1,1]*0.8,...
-    'markerEdgeColor',[1,1,1]*0.4,...
-    'MarkerSize',1)
-
-set([H.mu],'color','k')
-set(gca, 'Xticklabels',labels);xtickangle(90) 
-for ii=1:length(H)
-    set(H(ii).sdPtch,'FaceColor',barcolors(ii,:),...
-        'EdgeColor','none')
-    
-    set(H(ii).semPtch,'FaceColor',barcolors(ii,:),...
-        'EdgeColor','none') 
+figure; b=bar(1:5, mean(rel), 'FaceColor' ,'flat');
+for ii=1:size(b.CData,1)
+    b.CData(ii,:)=barcolors(ii,:);
 end
-saveas(gcf,[resdir 'compare_methods_overlap_folds.pdf'])
+set(gca, 'Xticklabels',labels);xtickangle(90) 
+axis([0 6 0.55 0.65])
+hold on; er=errorbar(1:5, mean(rel), (std(rel)/sqrt(length(inregions))));
+er.Color=[0 0 0];
+er.LineStyle='none';
+saveas(gcf,[resdir 'compare_methods_overlap_folds_rel.pdf'])
 
 
 rel_nstates(1)=corr(GSdata2bounds_legacy.median_SL(inregions,1), GSdata2bounds_legacy.median_SL(inregions,2));
