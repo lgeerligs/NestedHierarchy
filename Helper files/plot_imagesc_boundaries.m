@@ -1,9 +1,9 @@
-function plot_imagesc_boundaries(fname, data, boundaries, cax, lim, cmap, labels, backcolor)
+function plot_imagesc_boundaries(fname, data, boundaries, cax, lim, cmap, labels, backcolor, cbar, ticks)
 %specify cax, lim and cmap as empty [],  if you do not need them
 
 
         fig1=figure();
-        fig1.Renderer='Painters';
+        fig1.Renderer='Painters';%'opengl'%
         boundaries=boundaries-0.5;
         h1=imagesc(data); 
         set(h1, 'AlphaData', 1-isnan(data))
@@ -21,11 +21,16 @@ function plot_imagesc_boundaries(fname, data, boundaries, cax, lim, cmap, labels
             end
         end
         
+
+        
         if exist('labels', 'var')
             if ~isempty(labels)
-                set(gca,'Xtick',1:length(labels), 'Xticklabel', labels);
+                if ~exist('ticks', 'var')
+                    ticks=1:length(labels);
+                end
+                set(gca,'Xtick',ticks, 'Xticklabel', labels);
                 xtickangle(90)
-                set(gca,'Ytick',1:length(labels), 'Yticklabel', labels);
+                set(gca,'Ytick',ticks, 'Yticklabel', labels);
             else
                 set(gca,'Xtick',[],'Ytick',[])
             end
@@ -61,10 +66,19 @@ function plot_imagesc_boundaries(fname, data, boundaries, cax, lim, cmap, labels
             end
         end
         
-        colorbar
+        if ~exist('cbar', 'var')
+            cbar=1;
+        end
+        
+        if cbar==1
+            colorbar
+        end
+        
+        if ~isempty(fname)
         [path,name,ext]=fileparts(fname);
-        if strcmp(ext, '.jpg')
-            saveas(fig1, fname)
-        else
-            print(fig1, '-dpdf', fname)
+            if strcmp(ext, '.jpg')
+                saveas(fig1, fname)
+            else
+                print(fig1, '-dpdf', fname)
+            end
         end
